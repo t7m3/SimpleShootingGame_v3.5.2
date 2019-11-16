@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.DisplayMetrics
 import android.view.MotionEvent
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -13,6 +14,7 @@ class MainActivity : AppCompatActivity() {
     private var screenHeight = 0   //スクリーンの高さ格納する変数の宣言
 
     private lateinit var enemy01 :Enemy  //Enemyクラスの変数を宣言しておく
+    private lateinit var bullet01 :Bullet  //Bulletクラスの変数を宣言しておく
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
