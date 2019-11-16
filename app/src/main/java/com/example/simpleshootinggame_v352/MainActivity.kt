@@ -85,6 +85,8 @@ class MainActivity : AppCompatActivity() {
             MotionEvent.ACTION_UP -> {
                 textViewtouch.append("　ACTION_UP")
                 bullet01.state = "move"
+                bullet01.imageView.x = imageViewPlayer.x + imageViewPlayer.width/2 - bullet01.imageView.width/2
+                bullet01.imageView.y = imageViewPlayer.y
             }
 
             MotionEvent.ACTION_MOVE -> {
