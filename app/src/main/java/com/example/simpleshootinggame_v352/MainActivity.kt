@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                     enemy01.imageView.setImageResource(R.drawable.s5z8k0g6)  //画像を爆発の画像に変える
 
                     //弾を初期位置に戻す
-                    bullet01.imageView.y = -10F  // y座標を表示範囲外にすると、Bulletクラスのmoveメソッドで、初期位置に戻される
+                    bullet01.imageView.y = -100F  // y座標を表示範囲外にすると、Bulletクラスのmoveメソッドで、初期位置に戻される
 
 
                 }
