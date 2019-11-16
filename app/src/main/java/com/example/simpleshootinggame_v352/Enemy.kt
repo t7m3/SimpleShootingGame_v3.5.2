@@ -7,6 +7,7 @@ public class Enemy(image:ImageView, x:Float, y:Float, width: Int) {
 
     public val imageView = image;
     private val screenwidth = width;
+    private var dir = 1;
 
     init {
         imageView.x = x;
@@ -14,7 +15,11 @@ public class Enemy(image:ImageView, x:Float, y:Float, width: Int) {
     }
 
     fun move(x:Int): Int{  //　xは移動量
+        imageView.x = imageView.x + x * dir  //移動する
 
+        if(imageView.x < 0 ||  screenwidth - imageView.width < imageView.x ){  //移動した後、左端または右端を越えたら
+            dir = dir * -1;  //移動の左右の向きを反転する
+        }
         return 1;
     }
 }

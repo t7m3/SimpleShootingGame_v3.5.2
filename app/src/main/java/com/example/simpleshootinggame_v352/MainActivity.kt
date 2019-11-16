@@ -1,6 +1,7 @@
 package com.example.simpleshootinggame_v352
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.DisplayMetrics
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -9,6 +10,8 @@ class MainActivity : AppCompatActivity() {
 
     private var screenWidth = 0  //スクリーンの幅を格納する変数の宣言
     private var screenHeight = 0   //スクリーンの高さ格納する変数の宣言
+
+    private lateinit var enemy01 :Enemy  //Enemyクラスの変数を宣言しておく
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +26,29 @@ class MainActivity : AppCompatActivity() {
         // Enemyクラスのインスタンスを生成する
         var x = 50F;
         var y = screenHeight.toFloat() * 0.2F
-        val enemy01 = Enemy(imageViewEnemy, x, y, screenWidth);
+        enemy01 = Enemy(imageViewEnemy, x, y, screenWidth);
 
+        // タイマのインスタンスの生成
+        val timer = MyCountDownTimer(150 * 60 * 1000, 10)
+        //timerText.text = "150:00"
+
+        // タイマのスタート
+        timer.start()  // <- これで十分かな。
+        //timer.apply { start() }  // <- これでもできる。教科書はこれ。
+    }
+
+    inner class MyCountDownTimer(millisInFuture: Long, countDownInterval: Long) :
+        CountDownTimer(millisInFuture, countDownInterval) {
+
+        override fun onTick(millisUntilFinished: Long) {
+
+            enemy01.move(3);
+        }
+
+        override fun onFinish() {
+            //timerText.text = "0:00"
+            //timerText.text = "--:--"                                                         //デバッグ用
+
+        }
     }
 }
