@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name='SimpleShootingGame_v3.5.2'
