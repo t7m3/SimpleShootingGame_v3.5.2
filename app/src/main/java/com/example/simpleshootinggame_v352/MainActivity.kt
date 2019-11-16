@@ -55,6 +55,7 @@ class MainActivity : AppCompatActivity() {
 
             enemy01.move(3);  // 敵が左右に移動する
 
+            bullet01.move(5)  // 弾が上に移動する
 
         }
 
