@@ -14,11 +14,12 @@ public class Enemy(image:ImageView, x:Float, y:Float, width: Int) {
         imageView.y = y;
     }
 
-    fun move(x:Int): Int{  //　xは移動量
-        imageView.x = imageView.x + x * dir  //移動する
+    fun move(x:Int): Int{  // xは移動量
 
-        if(imageView.x < 0 ||  screenwidth - imageView.width < imageView.x ){  //移動した後、左端または右端を越えたら
-            dir = dir * -1;  //移動の左右の向きを反転する
+        imageView.x = imageView.x + x * dir  // xだけ移動する
+
+        if(imageView.x < 0 ||  screenwidth - imageView.width < imageView.x ){  // 移動した後に、左端または右端を越えたら
+            dir = dir * -1;  // 移動の左右の向きを反転する
         }
         return 1;
     }

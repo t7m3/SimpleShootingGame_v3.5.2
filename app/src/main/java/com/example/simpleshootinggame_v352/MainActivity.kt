@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         // タイマのインスタンスの生成
         val timer = MyCountDownTimer(150 * 60 * 1000, 10)
-        //timerText.text = "150:00"
+        timerText.text = "150:00"  // ←↑今は150分
 
         // タイマのスタート
         timer.start()  // <- これで十分かな。
@@ -42,7 +42,13 @@ class MainActivity : AppCompatActivity() {
 
         override fun onTick(millisUntilFinished: Long) {
 
+            val minute = millisUntilFinished / 1000L / 60L
+            val second = millisUntilFinished / 1000 % 60
+            timerText.text = "%1d:%2$02d".format(minute, second)
+
             enemy01.move(3);
+
+
         }
 
         override fun onFinish() {
