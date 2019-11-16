@@ -55,8 +55,9 @@ class MainActivity : AppCompatActivity() {
 
             enemy01.move(3);  // 敵が左右に移動する
 
-            bullet01.move(5)  // 弾が上に移動する
-
+            if (bullet01.state == "move"){
+                bullet01.move(5)  // 弾が上に移動する
+            }
         }
 
         override fun onFinish() {
@@ -83,6 +84,7 @@ class MainActivity : AppCompatActivity() {
 
             MotionEvent.ACTION_UP -> {
                 textViewtouch.append("　ACTION_UP")
+                bullet01.state = "move"
             }
 
             MotionEvent.ACTION_MOVE -> {
