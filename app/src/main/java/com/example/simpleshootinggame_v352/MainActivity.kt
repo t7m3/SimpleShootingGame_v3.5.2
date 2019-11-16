@@ -62,9 +62,12 @@ class MainActivity : AppCompatActivity() {
             val second = millisUntilFinished / 1000 % 60
             timerText.text = "%1d:%2$02d".format(minute, second)
 
-            enemy01.move(3);  // 敵が左右に移動する
+            if (enemy01.state == "move"){
+                enemy01.move(3);  // 敵が左右に移動する
+            }
 
             if (bullet01.state == "move"){
+
                 bullet01.move(5)  // 弾が上に移動する
             }
         }
@@ -74,6 +77,16 @@ class MainActivity : AppCompatActivity() {
             timerText.text = "--:--"                                                         //デバッグ用
 
         }
+    }
+
+    //当たり判定のメソッド　当たったら、trueを返す、当たっていなければFalseを返す
+    fun hit(enemy: ImageView, bullet: ImageView): Boolean {
+        if (enemy.y <= bullet.y && bullet.y <= enemy.y + enemy.height) {
+            if (enemy.x <= bullet.x + bullet.width / 2 && bullet.x + bullet.width / 2 <= enemy.x + enemy.width) {
+                return true
+            }
+        }
+        return false
     }
 
     //画面タッチのメソッドの定義
