@@ -56,13 +56,15 @@ class MainActivity : AppCompatActivity() {
     inner class MyCountDownTimer(millisInFuture: Long, countDownInterval: Long) :
         CountDownTimer(millisInFuture, countDownInterval) {
 
+        private var explosion_millisUntilFinished = 0L // 爆発したときの時刻（のようなもの）を保存する変数
+
         override fun onTick(millisUntilFinished: Long) {
 
             val minute = millisUntilFinished / 1000L / 60L
             val second = millisUntilFinished / 1000 % 60
             timerText.text = "%1d:%2$02d".format(minute, second)
 
-            if (enemy01.state == "move"){
+            if (enemy01.state == "move"){  // 敵が動いているときは
                 enemy01.move(3);  // 敵が左右に移動する
             }
 
@@ -74,11 +76,19 @@ class MainActivity : AppCompatActivity() {
 
                     enemy01.state = "stop"  // 敵の移動を止める
                     enemy01.imageView.setImageResource(R.drawable.s5z8k0g6)  //画像を爆発の画像に変える
+                    explosion_millisUntilFinished = millisUntilFinished// 爆発したときの時刻（のようなもの）を保存しておく
 
                     //弾を初期位置に戻す
                     bullet01.imageView.y = -100F  // y座標を表示範囲外にすると、Bulletクラスのmoveメソッドで、初期位置に戻される
+                }
+            }
 
+            if(enemy01.state == "stop"){  //敵が止まっているときは（爆発中のときは）
+                if (explosion_millisUntilFinished - millisUntilFinished >= 3000) {  // 爆発の時間が経過したら
 
+                    // imageViewEnemyの画像をロケットの画像に変える
+                    enemy01.imageView.setImageResource(R.drawable.rocket)
+                    enemy01.state = "move"  // imageViewEnemy が移動する
                 }
             }
         }
