@@ -35,6 +35,15 @@ class MainActivity : AppCompatActivity() {
         imageViewPlayer.x = 50F
         imageViewPlayer.y = screenHeight.toFloat() * 0.6F
 
+        // Bulletクラスのインスタンスを生成する（まずImageViewのインスタンスを生成し、それを元にして）
+        var image : ImageView
+        image = ImageView(this)  //　ImageViewのインスタンスを生成する
+        image.setImageResource(R.drawable.arw02up)  //画像を設定する
+        x = 50F
+        y = screenHeight.toFloat() * 0.7F
+        bullet01 = Bullet(image, x, y, screenHeight)  // ここで実際にBulletクラスのインスタンスを生成している
+        layout.addView(bullet01.imageView)  // 画面（layout）に追加する
+
         // タイマのインスタンスの生成
         val timer = MyCountDownTimer(150 * 60 * 1000, 10)
         timerText.text = "150:00"  // ←↑今は150分
