@@ -69,6 +69,13 @@ class MainActivity : AppCompatActivity() {
             if (bullet01.state == "move"){
 
                 bullet01.move(5)  // 弾が上に移動する
+
+                if (hit(enemy01.imageView,  bullet01.imageView)==true){ // 弾が敵に当たったか？
+
+                    enemy01.state = "stop"  // 敵の移動を止める
+                    enemy01.imageView.setImageResource(R.drawable.s5z8k0g6)  //画像を爆発の画像に変える
+
+                }
             }
         }
 
