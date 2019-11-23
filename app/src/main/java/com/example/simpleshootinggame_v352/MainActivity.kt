@@ -45,14 +45,14 @@ class MainActivity : AppCompatActivity() {
         layout.addView(bullet01.imageView)  // 画面（layout）に追加する
 
         // Bulletクラス　インスタンス配列化の実験
-        val bulletArray = arrayOfNulls<Bullet?>(5)  //配列の宣言
+        var bulletArray = arrayOfNulls<Bullet?>(5)  // Bulletクラスの配列を宣言
         //var image : ImageView
         for (i in bulletArray.indices){
-            image = ImageView(this)  //インスタンスの生成
+            image = ImageView(this)  // ImageViewのインスタンスを生成
             image.setImageResource(R.drawable.arw02up)  //画像を設定する
             x = i * 50F
             y = screenHeight.toFloat() * 0.75F
-            bulletArray[i] = Bullet(image, x, y, screenHeight)
+            bulletArray[i] = Bullet(image, x, y, screenHeight)  // Bulletクラスのインスタンス生成
             layout.addView(bulletArray[i]!!.imageView)  // 画面（layout）に追加する
         }
 
