@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.DisplayMetrics
 import android.view.MotionEvent
+import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -53,7 +54,8 @@ class MainActivity : AppCompatActivity() {
             x = i * 50F
             y = screenHeight.toFloat() * 0.75F
             bulletArray[i] = Bullet(image, x, y, screenHeight)  // Bulletクラスのインスタンス生成
-            layout.addView(bulletArray[i]!!.imageView)  // 画面（layout）に追加する
+            layout.addView(bulletArray[i]?.imageView)  // 画面（layout）に追加する
+            bulletArray[i]?.imageView?.visibility = View.VISIBLE  // 弾を可視にする
         }
 
         // タイマのインスタンスの生成
@@ -142,6 +144,7 @@ class MainActivity : AppCompatActivity() {
                 bullet01.state = "move"
                 bullet01.imageView.x = imageViewPlayer.x + imageViewPlayer.width/2 - bullet01.imageView.width/2
                 bullet01.imageView.y = imageViewPlayer.y
+                bullet01.imageView.visibility = View.VISIBLE  // 弾を可視にする
             }
 
             MotionEvent.ACTION_MOVE -> {
