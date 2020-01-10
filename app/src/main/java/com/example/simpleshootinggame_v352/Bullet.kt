@@ -1,5 +1,6 @@
 package com.example.simpleshootinggame_v352
 
+import android.view.View
 import android.widget.ImageView
 
 class Bullet(image: ImageView, x:Float, y:Float, height:Int) {
@@ -14,6 +15,7 @@ class Bullet(image: ImageView, x:Float, y:Float, height:Int) {
     init {
         imageView.x = x;
         imageView.y = y;
+        imageView.visibility = View.INVISIBLE  // 弾を不可視にする
     }
 
     public fun move(y:Int){
@@ -24,6 +26,7 @@ class Bullet(image: ImageView, x:Float, y:Float, height:Int) {
             state = "stop"
             imageView.x = xx // 位置を初期位置にする
             imageView.y = yy // 位置を初期位置にする
+            imageView.visibility = View.INVISIBLE  // 弾を不可視にする
         }
 
     }

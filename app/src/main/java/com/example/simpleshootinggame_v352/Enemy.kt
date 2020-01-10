@@ -8,6 +8,9 @@ public class Enemy(image:ImageView, x:Float, y:Float, width: Int) {
     public val imageView = image;
     private val screenwidth = width;
     private var dir = 1;
+    public var state = "move"  // 敵の状態を保存する。
+                               //"move"：敵は動いている。"stop"：敵は動いていない。
+
 
     init {
         imageView.x = x;
