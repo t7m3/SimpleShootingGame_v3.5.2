@@ -7,6 +7,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -20,6 +21,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // 爆発gifアニメーションの imageView を用意する
+        Glide.with(this).load(R.drawable.daibakuhatsu).into(imageViewGif)
+        imageViewGif.visibility = View.INVISIBLE
 
         // スクリーンの幅と高さを取得する
         val dMetrics = DisplayMetrics()  //DisplayMetrics のインスタンスを生成する
@@ -89,7 +94,15 @@ class MainActivity : AppCompatActivity() {
                 if (hit(enemy01.imageView,  bullet01.imageView)==true){ // 弾が敵に当たったか？
 
                     enemy01.state = "stop"  // 敵の移動を止める
-                    enemy01.imageView.setImageResource(R.drawable.s5z8k0g6)  //画像を爆発の画像に変える
+
+                    //enemy01.imageView.setImageResource(R.drawable.s5z8k0g6)  //画像を爆発の画像に変える
+
+                    // 敵を不可視にし、爆発gifアニメーション画像をその場所に表示する
+                    enemy01.imageView.visibility = View.INVISIBLE
+                    imageViewGif.x = enemy01.imageView.x
+                    imageViewGif.y = enemy01.imageView.y
+                    imageViewGif.visibility = View.VISIBLE
+
                     explosion_millisUntilFinished = millisUntilFinished// 爆発したときの時刻（のようなもの）を保存しておく
 
                     //弾を初期位置に戻す
@@ -98,10 +111,15 @@ class MainActivity : AppCompatActivity() {
             }
 
             if(enemy01.state == "stop"){  //敵が止まっているときは（爆発中のときは）
-                if (explosion_millisUntilFinished - millisUntilFinished >= 3000) {  // 爆発の時間が経過したら
+                if (explosion_millisUntilFinished - millisUntilFinished >= 4000) {  // 爆発の時間が経過したら
 
                     // imageViewEnemyの画像をロケットの画像に変える
-                    enemy01.imageView.setImageResource(R.drawable.rocket)
+                    //enemy01.imageView.setImageResource(R.drawable.rocket)
+
+                    // 爆発gifアニメーション画像を不可視にし、敵の画像を可視にする
+                    imageViewGif.visibility = View.INVISIBLE
+                    enemy01.imageView.visibility = View.VISIBLE
+
                     enemy01.state = "move"  // imageViewEnemy が移動する
                 }
             }
